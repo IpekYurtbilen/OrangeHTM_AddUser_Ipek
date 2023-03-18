@@ -61,13 +61,13 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
 
         sendKeysElements(elements.getConfirmPasswordInputBox(), "technoStudy1!");
 
+        clickElements(elements.getSaveButton());
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        clickElements(elements.getSaveButton());
 
         clickElements(elements.getAdminButton());
 
@@ -92,8 +92,6 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
         Assert.assertTrue(isDisplayedElements(elements.getErrorForEmptyFields()));
         Assert.assertEquals(actualColor,expectedColor);
 
-
-
     }
 
     @Test
@@ -112,28 +110,38 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
 
         Assert.assertEquals(actualErrorMessage,expectedErrorMessage);
 
-
     }
 
     @Test
     void testCase05(){
-        Orange_App_Elements elements=new Orange_App_Elements(driver);
 
+        Orange_App_Elements elements=new Orange_App_Elements(driver);
         clickElements(elements.getAdminButton());
         clickElements(elements.getAddButton());
 
-        sendKeysElements(elements.getEmployeeNameInputBox(), "Techno");
+        sendKeysElements(elements.getEmployeeNameInputBox(),"PaulCol");
+
+        String actualNoRecordFoundErrorMessageForEmployeeName = getTextFromElements(elements.getNoRecordFoundTextForEmployeeName());
+        String expectedNoRecordFoundErrorMessageForEmployeeName = "No Records Found";
+
+        Assert.assertEquals(actualNoRecordFoundErrorMessageForEmployeeName, expectedNoRecordFoundErrorMessageForEmployeeName);
+        Assert.assertTrue(isDisplayedElements(elements.getNoRecordFoundTextForEmployeeName()));
 
         Actions actions = new Actions(driver);
         Action action = actions.sendKeys(Keys.TAB).build();
         action.perform();
 
+        String actualInvalidMessageForEmployeeName = getTextFromElements(elements.getInvalidErrorMessage());
+        String expectedInvalidMessageForEmployeeName = "Invalid";
+
+        Assert.assertEquals(actualInvalidMessageForEmployeeName,expectedInvalidMessageForEmployeeName);
+        Assert.assertTrue(isDisplayedElements(elements.getInvalidErrorMessage()));
+
+
         String expectedColor = "rgba(235, 9, 16, 1)";
         String actualColor = elements.getInvalidErrorMessage().getCssValue("color");
 
-        Assert.assertTrue(isDisplayedElements(elements.getInvalidErrorMessage()));
         Assert.assertEquals(actualColor, expectedColor, "The colors are not same");
-
 
     }
 
@@ -154,8 +162,6 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
         Assert.assertTrue(isDisplayedElements(elements.getUsernameErrorMessage()));
         Assert.assertEquals(actualColor, expectedColor, "The colors are not same");
 
-
-
     }
 
     @Test
@@ -174,8 +180,6 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
 
         Assert.assertTrue(isDisplayedElements(elements.getAlreadyExistsMessage()));
         Assert.assertEquals(actualColor, expectedColor, "The colors are not same");
-
-
 
     }
 
@@ -214,7 +218,6 @@ public class Add_User_Functionality_Test_Cases extends ParameterDriverClass {
         Assert.assertTrue(isDisplayedElements(elements.getConfirmPassword()));
         Assert.assertTrue(isDisplayedElements(elements.getCancelButton()));
         Assert.assertTrue(isDisplayedElements(elements.getSaveButton()));
-
 
     }
 

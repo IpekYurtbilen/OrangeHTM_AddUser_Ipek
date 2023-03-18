@@ -113,6 +113,9 @@ public class Orange_App_Elements {
     @FindBy(xpath = "//span[text()='Already exists']")
     private WebElement alreadyExistsMessage;
 
+    @FindBy(xpath = "//div[text()='No Records Found']")
+    private WebElement noRecordFoundTextForEmployeeName;
+
     public WebElement getUserName() {
         return userName;
     }
@@ -247,5 +250,9 @@ public class Orange_App_Elements {
 
     public WebElement getAlreadyExistsMessage() {
         return alreadyExistsMessage;
+    }
+
+    public WebElement getNoRecordFoundTextForEmployeeName() {
+        return noRecordFoundTextForEmployeeName;
     }
 }
